@@ -42,8 +42,16 @@ bigint bigint::operator- (const bigint& that) const {
 }
 
 bigint bigint::operator* (const bigint& that) const {
-   bigint result = uvalue * that.uvalue;
-   return result;
+    //cases for 0 (needs to be converted to c++)
+//    if ((value.size() == 1 && that.value.get(0) == 0) ||
+//        (that.value.size() == 1 && that.value.get(0) == 0)) {
+//        return new BigInt(0);
+//    }
+    if (is_negative == that.is_negative) {
+        //Same sign multiplication
+        return bigint (uvalue * that.uvalue, false);
+    }
+    else return bigint (uvalue *that.uvalue, true);
 }
 
 bigint bigint::operator/ (const bigint& that) const {

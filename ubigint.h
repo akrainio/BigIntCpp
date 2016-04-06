@@ -13,26 +13,30 @@ using namespace std;
 #include "relops.h"
 
 class ubigint {
-   friend ostream& operator<< (ostream&, const ubigint&);
-   private:
-      using unumber = unsigned long;
-      unumber uvalue {};
-   public:
-      void multiply_by_2();
-      void divide_by_2();
+    friend ostream& operator<< (ostream&, const ubigint&);
+    private:
+//        using unumber = unsigned long;
+//        unumber uvalue {};
+        using udigit_t = unsigned char;
+        using ubigvalue_t = vector<udigit_t>;
+        ubigvalue_t ubig_value;
+    public:
+        void multiply_by_2();
+        void divide_by_2();
+        void trim();
 
-      ubigint() = default; // Need default ctor as well.
-      ubigint (unsigned long);
-      ubigint (const string&);
+        ubigint() = default; // Need default ctor as well.
+        ubigint (unsigned long);
+        ubigint (const string&);
 
-      ubigint operator+ (const ubigint&) const;
-      ubigint operator- (const ubigint&) const;
-      ubigint operator* (const ubigint&) const;
-      ubigint operator/ (const ubigint&) const;
-      ubigint operator% (const ubigint&) const;
+        ubigint operator+ (const ubigint&) const;
+        ubigint operator- (const ubigint&) const;
+        ubigint operator* (const ubigint&) const;
+        ubigint operator/ (const ubigint&) const;
+        ubigint operator% (const ubigint&) const;
 
-      bool operator== (const ubigint&) const;
-      bool operator<  (const ubigint&) const;
+        bool operator== (const ubigint&) const;
+        bool operator<  (const ubigint&) const;
 };
 
 #endif
